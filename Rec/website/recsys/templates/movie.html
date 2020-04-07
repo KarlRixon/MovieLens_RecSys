@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MovieLens电影推荐</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<script src="/static/js/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" href="/static/css/movie.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<h1><a href="/recsys/index">MovieLens</a></h1>
+		</div>
+		<div class="search">
+			<form action="" method="post">
+				<input type="search" name="search" placeholder="请输入电影名字">
+				<input type="submit" name="anniu" value="搜索">
+			</form>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="tag-box">
+				<table class="table" style="margin-bottom:10px;">
+					<tbody>
+						<tr>
+							<td class="tag-span2">年份：</td>
+							<td class="tags">
+								<a class="tag" href="/movie/" data-value="全部">全部</a>
+								<a class="tag" href="/movie/?year=2016" data-value="2016">2016</a>
+								<a class="tag" href="/movie/?year=2015" data-value="2015">2015</a>
+								<a class="tag" href="/movie/?year=2014" data-value="2014">2014</a>
+								<a class="tag" href="/movie/?year=2013" data-value="2013">2013</a>
+								<a class="tag" href="/movie/?year=2012" data-value="2012">2012</a>
+								<a class="tag" href="/movie/?year=2011" data-value="2011">2011</a>
+								<a class="tag" href="/movie/?year=2010" data-value="2010">2010</a>
+								<a class="tag" href="/movie/?year=2009" data-value="2009">2009</a>
+								<a class="tag" href="/movie/?year=2008" data-value="2008">2008</a>
+								<a class="tag" href="/movie/?year=2007" data-value="2007">2007</a>
+								<a class="tag" href="/movie/?year=2006" data-value="2006">2006</a>
+								<a class="tag" href="/movie/?year=2005" data-value="2005">2005</a>
+								<a class="tag" href="/movie/?year=ten_years_ago" data-value="十年前">十年前</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="tag-span2">评分排序：</td>
+							<td class="tags">
+								<a class="tag" href="/movie/" data-value="全部">全部</a>
+								<a class="tag" href="/movie/?rating=10" data-value="9 ~ 10分">9 ~ 10分</a>
+								<a class="tag" href="/movie/?rating=9" data-value="8 ~ 9分">8 ~ 9分</a>
+								<a class="tag" href="/movie/?rating=8" data-value="7 ~ 8分">7 ~ 8分</a>
+								<a class="tag" href="/movie/?rating=7" data-value="6 ~ 7分">6 ~ 7分</a>
+								<a class="tag" href="/movie/?rating=6" data-value="5 ~ 6分">5 ~ 6分</a>
+							</td>
+						</tr>
+						<tr style="border-bottom:1px solid #DDD;">
+							<td class="tag-span2">影视类型：</td>
+							<td class="tags">
+								<a class="tag" href="/recsys/movie" data-value="全部">全部</a>
+								<a class="tag" href="/recsys/movie?t=1">未知</a>
+								<a class="tag" href="/recsys/movie?t=2">动作</a>
+								<a class="tag" href="/recsys/movie?t=3">冒险</a>
+								<a class="tag" href="/recsys/movie?t=4">动漫</a>
+								<a class="tag" href="/recsys/movie?t=5">儿童</a>
+								<a class="tag" href="/recsys/movie?t=6">喜剧</a>
+								<a class="tag" href="/recsys/movie?t=7">犯罪</a>
+								<a class="tag" href="/recsys/movie?t=8">纪录片</a>
+								<a class="tag" href="/recsys/movie?t=9">戏剧</a>
+								<a class="tag" href="/recsys/movie?t=10">奇幻</a>
+								<a class="tag" href="/recsys/movie?t=11">黑色</a>
+								<a class="tag" href="/recsys/movie?t=12">恐怖</a>
+								<a class="tag" href="/recsys/movie?t=13">音乐</a>
+								<a class="tag" href="/recsys/movie?t=14">神秘</a>
+								<a class="tag" href="/recsys/movie?t=15">浪漫</a>
+								<a class="tag" href="/recsys/movie?t=16">科幻</a>
+								<a class="tag" href="/recsys/movie?t=17">惊悚</a>
+								<a class="tag" href="/recsys/movie?t=18">战争</a>
+								<a class="tag" href="/recsys/movie?t=19">西部</a>
+							</td>
+						</tr>
+					<tr>
+							<td class="tag-span2">当前类型：</td>
+							<td class="tags">
+								<a class="tag" href="">{{cur_t}}</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-12" style="padding:0 5px;">
+				{% for item in t %}
+				<div class="col-xs-1-5 col-sm-4 col-xs-6 movie-item">
+					<div class="movie-item-in">
+						<a style="position:relative;display:block;" title="{{item.title}}" target="_blank" href="{{item.url}}">
+							<img alt="{{item.title}}" title="{{item.title}}" src="{{item.poster}}">
+							<span class="qtag hdtag">高清</span>
+							<div class="item-hover"></div>
+						</a>
+						<div class="meta">
+							<h1>
+								<a href="{{item.url}}" target="_blank" title="{{item.title}}">{{item.title}}</a>
+								<em> - 3.8分</em>
+							</h1>
+							<div class="otherinfo">
+								类型：
+								{% for tt in item.type %}
+								<a class="movietype" target="_blank" href="">{{tt}}</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>	
+		</div>
+		<!-- 分页 -->
+		<div class="pager-bg">
+			<ul class="pagination pagination-sm">
+				<li class="active">
+					<a>1</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2" data-ci-pagination-page="2">2</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2" data-ci-pagination-page="3">3</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2" data-ci-pagination-page="4">4</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2" data-ci-pagination-page="5">5</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2" data-ci-pagination-page="6">6</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2" data-ci-pagination-page="2" rel="next">下一页</a>
+				</li>
+				<li>
+					<a href="/movie/?page=2222" data-ci-pagination-page="2222">末页</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<footer>
+		<div class="foot">
+			<p>
+				免责声明：本网站数据和代码均为开源，仅供测试和学习交流。
+			<br>
+			<p class="friend-link">
+				友情链接：
+				<a target="_blank" href="https://www.blog.karlrixon.cn/">KarlRixon</a>
+			</p>
+			<em>
+				♥
+				<a href="/recsys/index">MovieLens100k电影推荐</a>
+			</em>
+		</div>
+	</footer>
+</body>
+</html>

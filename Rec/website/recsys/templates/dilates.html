@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>详情页</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<script src="/static/js/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" href="/static/css/dilates.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript" color="255,0,0" opacity='0.7' zIndex="-2" count="200" src="/static/js/canvas-nest.js"></script>
+	<header>
+		<div class="logo">
+			<h1><a href="/recsys/index">MovieLens</a></h1>
+		</div>
+		<div class="search">
+			<form action="" method="post">
+				<input type="search" name="search" placeholder="请输入电影名字">
+				<input type="submit" name="anniu" value="搜索">
+			</form>
+		</div>
+	</header>
+	<div class="container">
+		<div class="container-fluid" style="background:#fff;padding-top:15px;">
+			<ol class="breadcrumb">
+				<li><a href="/recsys/index">首页</a></li>
+				<li><a href="/recsys/movie">电影</a></li>
+				<li><span href="">电影详情</span></li>
+			</ol>
+			<div class="row">
+				<div class="col-xs-9 movie-info padding-right-5" style="width:780px;">
+					<h1>
+						{{title}}
+					</h1>
+					<div class="row">
+						<div class="col-xs-4 padding-right-0">
+							<a class="movie-post" href="{{url}}" style="display:block;position:relative;">
+								<img class="img-thumbnail" alt="28岁未成年" src="{{poster}}" width="100%">
+								<span class="qtag hdtag">高清</span>
+							</a>
+							<em>最后更新：{{release_date}}</em>
+							<div style="height:28px;">
+								<div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1484045781392">
+								<a class="bds_more" href="#" data-cmd="more"></a>
+								<a class="bds_qzone" title="分享到QQ空间" href="#" data-cmd="qzone"></a>
+								<a class="bds_tsina" title="分享到新浪微博" href="#" data-cmd="tsina"></a>
+								<a class="bds_tqq" title="分享到腾讯微博" href="#" data-cmd="tqq"></a>
+								<a class="bds_renren" title="分享到人人网" href="#" data-cmd="renren"></a>
+								<a class="bds_weixin" title="分享到微信" href="#" data-cmd="weixin"></a>
+								</div>
+								<script>
+								window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+								</script>
+							</div>
+						</div>
+						<div class="col-xs-8">
+							<table class="table table-striped table-condensed table-bordered" style="margin-bottom:10px;font-size:12px;">
+								<tbody>
+									<tr>
+										<td class="span2">
+										<span class="info-label">导演</span>
+										</td>
+										<td>
+										<a target="_blank" href=""></a>
+										</td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">编剧</span>
+										</td>
+										<td>
+										<a target="_blank" href=""></a>
+										</td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">主演</span>
+										</td>
+										<td>
+										<a target="_blank" href=""></a>
+										</td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">类型</span>
+										</td>
+										<td>
+										<a target="_blank" href=""></a>
+										</td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">地区</span>
+										</td>
+										<td>
+										<a target="_blank" href=""></a>
+										</td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">语言</span>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">上映时间</span>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">片长</span>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">又名</span>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td class="span2">
+										<span class="info-label">评分</span>
+										</td>
+										<td>
+										<a class="score" rel="nofollow" target="_blank" href="">豆瓣</a>
+										/
+										<a class="imdb" rel="nofollow" target="_blank" href="">IMDB</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="btn-group " role="group" aria-label="" style="margin-top:5px;">
+								<a id="down-btn" class="btn btn-default btn-sm" href="#down" role="button">
+								<span class="glyphicon glyphicon-download-alt"></span>
+								下载
+								</a>
+								<a id="plan_btn" class="btn btn-default btn-sm" href="javascript:;" onclick="plan(this,201186)" role="button">
+								<span class="glyphicon glyphicon-time"></span>
+								想看
+								</a>
+								<a id="watched_btn" class="btn btn-default btn-sm" href="javascript:;" onclick="watched(this,201186)" role="button">
+								<span class="glyphicon glyphicon-check"></span>
+								看过
+								</a>
+								<a id="like_btn" class="btn btn-default btn-sm" href="javascript:;" onclick="like(this,201186)" role="button">
+								<span class="glyphicon glyphicon-heart"></span>
+								喜欢
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="margin-top:5px;">
+						<div class="col-xs-12">
+							<h2>电影介绍</h2>
+						</div>
+						<div class="col-xs-12 movie-introduce">
+							<p>
+								。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+							</p>
+							<p>
+								。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<h2>精彩推荐</h2>
+						</div>
+						<div style="padding:0 10px;">
+							{% for item in rec %}
+							<div class="col-xs-2 movie-recommened">
+								<a style="position:relative;display:block;" target="_blank" title="{{item.3}}" href="{{item.0}}">
+								<img alt="{{item.3}}" src="{{item.1}}" width="100%">
+								<div class="item-hover"></div>
+								</a>
+								<a target="_blank" title="{{item.3}}" href="{{item.0}}">
+									<h5>{{item.3}}</h5>
+									<h5>相似度：{{item.4}}</h5>
+								</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-3 sidebar" style="padding-left:15px;width:220px;padding-right:5px;">
+					<h3>最近更新</h3>
+					<div class="list-group">
+						<a class="list-group-item" target="_blank" href="{{new.0.url}}">
+							<span class="square-item-red">1</span>
+							{{new.0.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.1.url}}">
+							<span class="square-item-red">2</span>
+							{{new.1.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.2.url}}">
+							<span class="square-item-red">3</span>
+							{{new.2.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.3.url}}">
+							<span class="square-item-blue">4</span>
+							{{new.3.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.4.url}}">
+							<span class="square-item-blue">5</span>
+							{{new.4.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.5.url}}">
+							<span class="square-item-blue">6</span>
+							{{new.5.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.6.url}}">
+							<span class="square-item-blue">7</span>
+							{{new.6.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.7.url}}">
+							<span class="square-item-blue">8</span>
+							{{new.7.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.8.url}}">
+							<span class="square-item-blue">9</span>
+							{{new.8.title}}
+						</a>
+						<a class="list-group-item" target="_blank" href="{{new.9.url}}">
+							<span class="square-item-blue">10</span>
+							{{new.9.title}}
+						</a>
+					</div>
+					<h3>人气电影</h3>
+					<div class="list-group">
+						<a class="list-group-item" title="我们-迅雷下载" target="_blank" href="{{hot.0.1}}">
+							<span class="square-item-red">1</span>
+							{{hot.0.0}}
+						</a>
+						<a class="list-group-item" title="魔发精灵-迅雷下载" target="_blank" href="{{hot.1.1}}">
+							<span class="square-item-red">2</span>
+							{{hot.1.0}}
+						</a>
+						<a class="list-group-item" title="精灵王座-迅雷下载" target="_blank" href="{{hot.2.1}}">
+							<span class="square-item-red">3</span>
+							{{hot.2.0}}
+						</a>
+						<a class="list-group-item" title="伤物语2：热血篇-迅雷下载" target="_blank" href="{{hot.3.1}}">
+							<span class="square-item-blue">4</span>
+							{{hot.3.0}}
+						</a>
+						<a class="list-group-item" title="航海王之黄金城-迅雷下载" target="_blank" href="{{hot.4.1}}">
+							<span class="square-item-blue">5</span>
+							{{hot.4.0}}
+						</a>
+						<a class="list-group-item" title="迷失：消失的女人-迅雷下载" target="_blank" href="{{hot.5.1}}">
+							<span class="square-item-blue">6</span>
+							{{hot.5.0}}
+						</a>
+						<a class="list-group-item" title="无名女尸-迅雷下载" target="_blank" href="{{hot.6.1}}">
+							<span class="square-item-blue">7</span>
+							{{hot.6.0}}
+						</a>
+						<a class="list-group-item" title="致命恋爱-迅雷下载" target="_blank" href="{{hot.7.1}}">
+							<span class="square-item-blue">8</span>
+							{{hot.7.0}}
+						</a>
+						<a class="list-group-item" title="哥-迅雷下载" target="_blank" href="{{hot.8.1}}">
+							<span class="square-item-blue">9</span>
+							{{hot.8.0}}
+						</a>
+						<a class="list-group-item" title="塔洛-迅雷下载" target="_blank" href="{{hot.9.1}}">
+							<span class="square-item-blue">10</span>
+							{{hot.9.0}}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="foot">
+			<p>
+				免责声明：本网站数据和代码均为开源，仅供测试和学习交流。
+			<br>
+			<p class="friend-link">
+				友情链接：
+				<a target="_blank" href="https://www.blog.karlrixon.cn/">KarlRixon</a>
+			</p>
+			<em>
+				♥
+				<a href="/recsys/index">MovieLens100k电影推荐</a>
+			</em>
+		</div>
+	</footer>
+</body>
+</html>

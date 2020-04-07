@@ -1,0 +1,11 @@
+获取海报url
+下载海报
+整理no_posters.txt
+整理useless.txt
+整理data.txt
+自定义dataset
+修改resnet
+AI Studio pytorch1.1.0 
+改进acc计算
+train
+test

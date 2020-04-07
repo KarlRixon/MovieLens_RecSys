@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MovieLens电影推荐</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<script src="/static/js/jquery-1.11.3.min.js"></script>
+	<script src="/static/js/index.js"></script>
+	<link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+	<script type="text/javascript" color="255,0,0" opacity='0.7' zIndex="-2" count="200" src="/static/js/canvas-nest.js"></script>
+	<header>
+		<div class="logo">
+			<h1><a href="#">MovieLens100k</a></h1>
+		</div>
+		<div class="search">
+			<form action="" method="post">
+				<input type="search" name="search" placeholder="请输入电影名字">
+				<input type="submit" name="anniu" value="搜索">
+			</form>
+			<div class="tj">
+				<a href="#">Toy Story</a>
+				<a href="#">Apollo 13</a>
+				<a href="#">Lion King</a>
+				<a href="#">Jurassic Park</a>
+				<a href="#">Bean</a>
+			</div>
+		</div>
+	</header>
+	<nav>
+		<div class="nav">
+			<div class="nav_item"><a href="/recsys/movie"><p>全部</p><p>All</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=1"><p>未知</p><p>unknow</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=2"><p>动作</p><p>Action</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=3"><p>冒险</p><p>Adventure</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=4"><p>动漫</p><p>Animation</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=5"><p>儿童</p><p>Children's</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=6"><p>喜剧</p><p>Comedy</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=7"><p>犯罪</p><p>Crime</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=8"><p>纪录片</p><p>Documentary</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=9"><p>戏剧</p><p>Drama</p></a></div>
+		</div>
+	</nav>
+	<nav>
+		<div class="nav">
+			<div class="nav_item"><a href="/recsys/movie?t=10"><p>奇幻</p><p>Fantasy</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=11"><p>黑色</p><p>Film-Noir</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=12"><p>恐怖</p><p>Horror</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=13"><p>音乐</p><p>Musical</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=14"><p>神秘</p><p>Mystery</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=15"><p>浪漫</p><p>Romance</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=16"><p>科幻</p><p>Sci-Fi</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=17"><p>惊悚</p><p>Thriller</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=18"><p>战争</p><p>War</p></a></div>
+			<div class="nav_item"><a href="/recsys/movie?t=19"><p>西部</p><p>Western</p></a></div>
+		</div>
+	</nav>
+	<div class="gg"><a href="/recsys/poster_rec">公告：看海报识类型功能上线啦！</a></div>
+	<div class="out l">
+			<div class="hot">
+				<img src="/static/images/ribbon.png" alt="HoT">
+			</div>
+			<ul class="img ">
+				<li><a href="# "><img src="/static/images/1.jpg " alt=" "></a></li>
+				<li><a href="# "><img src="/static/images/2.jpg " alt=" "></a></li>
+				<li><a href="# "><img src="/static/images/3.jpg " alt=" "></a></li>
+				<li><a href="# "><img src="/static/images/4.jpg " alt=" "></a></li>
+				<li><a href="# "><img src="/static/images/5.jpg " alt=" "></a></li>
+			</ul>
+			<ul class="num ">
+			</ul>
+			<div class="left btn "><</div>
+			<div class="right btn right-btn">></div>
+	</div>
+	<div class="box-line">
+		<span>识海报推荐</span>
+	</div>
+	<div class="menu">
+		<div class="menu_item">
+			<div class="menu_item_img">
+				<a href="/recsys/poster_rec">
+					<img src="/static/posters/1.png" alt="图片">
+					<img src="/static/posters/11.png" alt="图片">
+				</a>
+				<span class="menu_item_img_title"></span>
+			</div>
+			<div class="menu_item_img">
+				<a href="/recsys/poster_rec">
+					<img src="/static/posters/2.png" alt="图片">
+					<img src="/static/posters/12.png" alt="图片">
+				</a>
+			</div>
+			<div class="menu_item_img">
+				<a href="/recsys/poster_rec">
+					<img src="/static/posters/3.png" alt="图片">
+					<img src="/static/posters/13.png" alt="图片">
+				</a>
+			</div>
+			<div class="menu_item_img">
+				<a href="/recsys/poster_rec">
+					<img src="/static/posters/4.png" alt="图片">
+					<img src="/static/posters/14.png" alt="图片">
+				</a>
+			</div>
+		</div>
+	</div>
+	<main>
+		<div class="main">
+			<div class="main_title">
+				<h3>最新电影</h3>
+				<a href="/recsys/movie">更多>></a>
+			</div>
+			{% for n in new %}
+			<div class="main_item">
+				<a class="main_item_img" href="{{n.url}}">
+					<img class="main_item_img_tu" src="{{n.poster}}" alt="">
+					<img class="main_item_ico" src="/static/images/play-icon.png" alt="">
+					<span class="cq">超清</span>
+				</a>
+				<div class="main_item_title">
+					<h1>
+						<a href="#" target="_blank" title="人类清除计划3">{{n.title}}</a>
+						<em> - 6.0分</em>
+					</h1>
+					<div class="main_item_title_lei">
+						类型：
+						{% for t in n.type %}
+						<a class="movietype" target="_blank" href="#">{{t}}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			<div class="cl"></div>
+		</div>
+		<div class="right">
+			<div class="right_title">
+				<h3>人气电影</h3>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.0.1}}">
+					<span class="square-item-red">1</span>{{hot.0.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.1.1}}">
+					<span class="square-item-red">2</span>{{hot.1.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.2.1}}">
+					<span class="square-item-red">3</span>{{hot.2.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.3.1}}">
+					<span class="square-item-blue">4</span>{{hot.3.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.4.1}}">
+					<span class="square-item-blue">5</span>{{hot.4.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.5.1}}">
+					<span class="square-item-blue">6</span>{{hot.5.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.5.1}}">
+					<span class="square-item-blue">7</span>{{hot.6.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.7.1}}">
+					<span class="square-item-blue">8</span>{{hot.7.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.8.1}}">
+					<span class="square-item-blue">9</span>{{hot.8.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.9.1}}">
+					<span class="square-item-blue">10</span>{{hot.9.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.10.1}}">
+					<span class="square-item-blue">11</span>{{hot.10.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.11.1}}">
+					<span class="square-item-blue">12</span>{{hot.11.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.12.1}}">
+					<span class="square-item-blue">13</span>{{hot.12.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.13.1}}">
+					<span class="square-item-blue">14</span>{{hot.13.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.14.1}}">
+					<span class="square-item-blue">15</span>{{hot.14.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.15.1}}">
+					<span class="square-item-blue">16</span>{{hot.15.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.16.1}}">
+					<span class="square-item-blue">17</span>{{hot.16.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.17.1}}">
+					<span class="square-item-blue">18</span>{{hot.17.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.18.1}}">
+					<span class="square-item-blue">19</span>{{hot.18.0}}
+				</a>
+			</div>
+			<div class="list-group">
+				<a class="list-group-item" target="_blank" href="{{hot.19.1}}">
+					<span class="square-item-blue">20</span>{{hot.19.0}}
+				</a>
+			</div>
+		</div>
+	</main>
+	<div class="main3">
+		<div class="main3_title">
+			<h3>电影推荐</h3>
+			<a href="">更多>></a>
+		</div>
+		{% for r in rec %}
+		<div class="main3_item">
+			<div class="main3_item_img">
+				<a href="{{r.url}}"><img src="{{r.poster}}" alt=""></a>
+				<span class="lg">蓝光</span>
+				<div class="main3_item_title">
+					<h1>
+						<a href="#" target="_blank" title="{{r.title}}">{{r.title}}</a>
+						<em> - 6.0分</em>
+					</h1>
+					<div class="main3_item_title_lei">
+						类型：
+						{% for t in r.type %}
+						<a class="movietype3" target="_blank" href="#">{{t}}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="cl"></div>
+	<a class="genduo" href="#">更多精彩电影>></a>
+	<footer>
+		<div class="foot">
+			<p>
+				免责声明：本网站数据和代码均为开源，仅供测试和学习交流。
+			<br>
+			<p class="friend-link">
+				友情链接：
+				<a target="_blank" href="https://www.blog.karlrixon.cn/">KarlRixon</a>
+			</p>
+			<em>
+				♥
+				<a href="/recsys/index">MovieLens100k电影推荐</a>
+			</em>
+		</div>
+	</footer>
+</body>
+</html>
