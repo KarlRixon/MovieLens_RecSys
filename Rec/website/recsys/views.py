@@ -5,7 +5,6 @@ from django.conf import settings
 import numpy as np
 import pandas as pd
 from sklearn.metrics import pairwise_distances
-from scipy.spatial.distance import cosine, correlation
 
 types = ['未知', '动作', '冒险', '动漫', '儿童', '喜剧', '犯罪',
          '纪录片', '戏剧', '奇幻', '黑暗', '恐怖', '音乐', '神秘',
@@ -94,6 +93,15 @@ def item_based(ratings, movies, m, n):
         r.append(t)
     return r
 
+def type_based(pred, n):
+    _, _, movies, _, _ = get_data()
+    rec = movies[movies[type_e[pred-1]]==1].sample(n=n)
+    r = []
+    for item in rec.values:
+        ri = {'poster': '/static/posters/' + str(item[0]) + '.png', 'title': item[1][:-6]}
+        r.append(ri)
+    return r
+
 def get_hot(df, n):# 获取人气电影
         # 获取高评分电影且评分个数大于50
     movie_stats = df.groupby(['title', 'movie_id']).agg({'rating': [np.size, np.mean]})
@@ -148,9 +156,34 @@ def poster_rec(request):
     if m:
         m = int(m)
     else:
-        m = 1
+        m = 2
 
-    result = {}
+    # 获取原图分类结果
+    cols = ['movie_id', 'pred_type', 'correct', 'title']
+    preds = pd.read_csv(settings.BASE_DIR + '/ml-100k/pred.txt', sep='\t', names=cols,
+                        encoding='latin-1')
+    pred = preds[preds['movie_id'] == m]['pred_type'].values[0]
+    correct = preds[preds['movie_id'] == m]['correct'].values[0]
+    if correct == 1:
+        correct = '正确'
+    else:
+        correct = '错误'
+
+    # 获取攻击样本分类结果
+    cols = ['movie_id', 'ae_pred_type']
+    ae_preds = pd.read_csv(settings.BASE_DIR + '/ml-100k/FGSM.txt', sep='\t', names=cols,
+                        encoding='latin-1')
+    ae_pred = ae_preds[ae_preds['movie_id'] == m]['ae_pred_type'].values[0]
+
+    # 获取原图推荐
+    rec = type_based(pred, 6)
+
+    # 获取攻击样本推荐
+    ae_rec = type_based(ae_pred, 6)
+
+    result = {'poster': '/static/posters/'+str(m)+'.png', 'pred_type': types[pred-1],
+              'correct': correct, 'ae_poster': '/static/FGSM/'+str(m)+'.png',
+              'ae_pred_type': types[ae_pred-1], 'rec': rec, 'ae_rec': ae_rec}
     return render(request, 'poster_rec.html', result)
 
 def dilates(request):
@@ -171,7 +204,8 @@ def dilates(request):
         r = item_based(ratings, movies, m, 6)
 
         result = {'poster': '/static/posters/'+str(m)+'.png', 'title': title,
-              'release_date': release_date, 'url': url, 'rec': r, 'new': n, 'hot': h}
+            'release_date': release_date, 'url': url, 'rec': r, 'new': n,
+            'hot': h, 'poster_rec': '/recsys/poster_rec?m='+str(m)}
     return render(request, 'dilates.html', result)
 
 def movie(request):

@@ -126,7 +126,8 @@ STATICFILES_DIRS = (
     ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
     ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts').replace('\\', '/')),
-    ('posters', os.path.join(STATIC_ROOT, 'posters').replace('\\', '/'))
+    ('posters', os.path.join(STATIC_ROOT, 'posters').replace('\\', '/')),
+    ('FGSM', os.path.join(STATIC_ROOT, 'FGSM').replace('\\', '/')),
 )
 
 # user-based CF
