@@ -95,7 +95,10 @@ def item_based(ratings, movies, m, n):
 
 def type_based(pred, n):
     _, _, movies, _, _ = get_data()
-    rec = movies[movies[type_e[pred-1]]==1].sample(n=n)
+    t = movies[movies[type_e[pred-1]]==1]
+    if n > t.shape[0]: # 解决采样数大于原数据行数bug
+        n = t.shape[0]
+    rec = t.sample(n=n)
     r = []
     for item in rec.values:
         ri = {'poster': '/static/posters/' + str(item[0]) + '.png', 'title': item[1][:-6]}

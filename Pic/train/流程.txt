@@ -9,3 +9,11 @@ AI Studio pytorch1.1.0
 改进acc计算
 train
 test
+
+搭建django网站和应用
+前端设计实现
+后端功能实现
+生成分类数据
+生成对抗样本
+对抗训练
+测试鲁棒性
